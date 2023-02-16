@@ -8,7 +8,7 @@ exports.postUser = async (req, res) => {
        
   if (!errors.isEmpty()) return res.status(400).send({status:0,msg:errors.array()[0].msg})
 
-  const {phone_no, name ,email, password, address, role, level } = req.body;
+  const {phone_no, name ,email, password, address, role, level, confirmPassword } = req.body;
   
   const checkPhone = await User.findOne({phone_no})
   if (checkPhone) {return res.status(400).send({status:0,msg:"This Phone number is already exist"}) } 
