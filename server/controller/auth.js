@@ -8,7 +8,7 @@ exports.postUser = async (req, res) => {
        
   if (!errors.isEmpty()) return res.status(400).send({status:0,msg:errors.array()[0].msg})
 
-  const {phone_no, name ,email, password, address, confirmPassword } = req.body;
+  const {phone_no, name ,email, password, address, role, level } = req.body;
   
   const checkPhone = await User.findOne({phone_no})
   if (checkPhone) {return res.status(400).send({status:0,msg:"This Phone number is already exist"}) } 
@@ -16,7 +16,7 @@ exports.postUser = async (req, res) => {
   if (checkEmail) {return res.status(400).send({status:0,msg:"Email already exist"}) } 
   if (password !== confirmPassword) {return res.status(400).send({status:0,msg:"Password did not match"}) } 
  
-        const newUser = new User({ name, email, phone_no, address, password });
+        const newUser = new User({ name, email, phone_no, address, password, role, level });
         
         bcrypt.genSalt(12, (err, salt) => {
             if(err) console.error('There was an error', err);
