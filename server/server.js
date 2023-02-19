@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path');
 // const passport = require('passport');
 const cors = require("cors");
 require('./db/conn');
@@ -25,6 +26,14 @@ app.use('/api', device);
 // app.use('/api', slotBook);
 
 const PORT = process.env.PORT || 8081;
+
+
+app.use(express.static(path.join(__dirname, '../adminFrontend','build')));
+
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, '../adminFrontend','build', 'index.html'));
+});
+
 
 app.listen(PORT, () => {
    
