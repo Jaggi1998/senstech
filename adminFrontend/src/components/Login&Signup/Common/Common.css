@@ -1,0 +1,48 @@
+.forget-pass {
+    display: block;
+    float: right;
+}
+
+.login-wrap {
+    padding: 10% 25% 10% 25%;
+}
+
+.pink-text {
+    color:#E86C57;
+    text-decoration: none;
+}
+.link-text {
+    
+    text-decoration: none;
+}
+.login-btn {
+    display: block;
+    margin: auto;
+   width: inherit;
+}
+
+.top-img {
+    display: block;
+    margin: auto;
+
+    
+}
+
+.input-icons, input {
+      font-family:'Readex Pro', sans-serif, FontAwesome ;
+      font-weight: 200;
+}
+
+.no-worrie-text {
+    color: #787878;
+    font-weight: 200;
+}
+.back-txt {
+    text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+    .login-wrap {
+      padding: 0px !important;
+    }
+  }

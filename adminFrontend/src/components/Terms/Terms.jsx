@@ -1,0 +1,126 @@
+import React from 'react';
+import Navbar from '../Navbar/Navbar';
+import Footer from '../Footer/Footer';
+
+const Terms = () => {
+    return (
+        <>
+        <Navbar/>
+        <div className="container-fluid">
+            <div className="row my-5">
+                <div className="col-md-10 col-12 mx-auto my-5">
+                 <h2 className='mb-3'>Acceptance of Terms Through Use</h2>
+                 <p className='light-text mb-3'>By using this site or by clicking “I agree” to this Agreement, you (“User”) signify your agreement to these terms and conditions. If you do not agree to this Agreement please do not use this site and do not click “I agree”. Please check this Agreement periodically for changes as the owner of this site <strong>(“Breaking Chains Enterprises, LLC further referred to as BCE”) </strong>reserves the right to revise this Agreement. In the event of a change to this Agreement, your continued use of this site following the posting of any changes constitutes acceptance of such changes. BCE reserves the right to terminate a User’s use of this site at any time without notice and may do so for any breach of this Agreement.</p>
+
+                 <h2 className='mb-3'>You Must Be 18 or Older to Agree to This Agreement and Use of This Site</h2>
+                 <p className='light-text mb-3'>This Agreement must be completed, understood and agreed to by a person over 18. If a parent or guardian wishes to permit a person under 18 to access this site, he or she should email BCE with his or her explicit permission and acceptance of full legal responsibility. If you are not yet 18 or are accessing this site from any country where this material is prohibited, please exit now as you do not have proper authorization.</p>
+
+                 <h6>MONTHLY MEMBERSHIP</h6>
+                 <p className='light-text mb-3'>This Membership Agreement (“Agreement” or “Membership Agreement”) is entered into between Breaking Chains Enterprises, LLC (“BCE”), and you the member. This Agreement entitles members access to the membership site and participation in programs offered by BCE.  Any additional requirements for Programs must be adhered to. Membership fees are subject to change at any time in BCE’s sole discretion</p>
+                 <p className='light-text mb-3'>Please review this Agreement thoroughly as it is a legal contract between Breaking Chains Enterprises, LLC and all members. By using the services offered at BCE, you are agreeing to the terms of this Agreement.</p>
+
+                 <h2 className='mb-3'>MEMBERSHIP PAYMENT</h2>
+                 <p className='light-text mb-3'>Monthly membership of $29.95 are paid in advance monthly.  The first payment is automatically processed 7 days after membership registration and processes every 30-days after that date. Monthly membership payments shall be made via automatic debited payment (credit card or debit card).</p>
+                 <p className='light-text mb-3'>In the event of a declined credit card/debit card, the member’s account will be cancelled after 3 attempts to process payment.  Members will be notified of each decline and of cancellation due to non-payment.  Members will need to contact Support at support@breakingchainscoop.com to reactivate membership after cancellation.</p>
+
+                 <h2 className='mb-3'>LICENSE TO USE THIS SITE</h2>
+                 <p className='light-text mb-3'>Upon your agreement, BCE here by grants you a non-exclusive, non-transferable limited license to use this site in strict accordance with the terms and conditions in this Agreement. You agree not to make any false or fraudulent statements as you use this site. You acknowledge and agree that all content and services available on this site are property of BCE and are protected by copyrights, trademarks, service marks, patents, trade secrets, and other proprietary rights and laws, in the U.S. and internationally. All rights not expressly granted herein are fully reserved by BCE, its advertisers and licensors. You agree to pay for any and all purchases and services using your name and credit card through this Site, not to challenge any such charges and to pay for all collections and/or attorney fees resulting from any non-payment.</p>
+
+                 <h3 className='mb-3'>License Restrictions</h3>
+                 <h4 className='mb-3'>Use</h4>
+                 <p className='light-text mb-3'>Except as may be explicitly permitted, you agree not to save, download, cut and paste, sell, license, rent, lease, modify, distribute, copy, reproduce, transmit, publicly display, publicly perform, publish, adapt, edit, or create derivative works from materials from this site. Systematic retrieval of data or other content from this site to create or compile, directly or indirectly, a collection, database or directory without written permission from BCE is prohibited. In addition, use of the content or materials for any purpose not expressly permitted in this Agreement is prohibited.</p>
+
+                 <h4 className='mb-3'>Security</h4>
+                 <p className='light-text mb-3'>You agree that if you are issued a Username and Password by BCE, you shall use your best efforts to prevent access to this site through your Username and Password by anyone other than yourself, including but not limited to, keeping such information strictly confidential, notifying BCE immediately if you discover loss or access to such information by an unauthorized party and by using a secure Username and Password not easily guessed by a third party.</p>
+                 <p className='light-text mb-3'>You agree that you shall not try to reverse assemble, reverse compile, decompile, disassemble, translate or otherwise alter any executable code, contents or materials on or received via this site. You understand that such actions are likely to subject you to serious civil and criminal legal penalties and that BCE shall pursue such penalties to the full extent of the law to protect its rights and the rights of its other licensors.</p>
+
+                 <h4 className='mb-3'>Export</h4>
+                 <p className='light-text mb-3'>You agree that you shall comply with all applicable export and import control laws and regulations in your use of this site, or materials or services received through this site, and, in particular, you shall not export or re-export anything on or received through this site in violation of local or foreign export laws and/or without all required U.S. and foreign government licenses.</p>
+
+                 <h4 className='mb-3'>Government Use</h4>
+                 <p className='light-text mb-3'>If you are a branch or agency of the U.S. Government, the following provision applies. This site, code, contents, services and accompanying documentation are comprised of “commercial computer software” and “commercial computer software documentation” as such terms are used in 48 C.F.R. 12.212 (SEPT 1995) and are provided to the Government (i) for acquisitions by or on behalf of civilian agencies, consistent with the policy set forth in 48 C.F.R. 12.212; or (ii) for acquisitions by or on behalf of units of the Department of Defense, consistent with the policies set forth in 48 C.F.R. 227.7202-1 (JUN 1995) and 227.7202-3 (JUN 1995). Unpublished rights reserved under the copyright laws of the United States.</p>
+
+                 <h4 className='mb-3'>Errors and Corrections</h4>
+                 <p className='light-text mb-3'>While we use reasonable efforts to include accurate and current information on our Site, we do not warrant or represent that the Site will be error-free. Data entry errors or other technical problems may sometimes result in inaccurate information being shown. We reserve the right to correct any inaccuracies or typographical errors on our Site, including pricing and availability of products and services, and shall have no liability for such errors. We may also make improvements and/or changes to the Site’s features, functionality, or content at any time. If you see any information or description you believe to be incorrect, please contact us and we’ll verify it for you.</p>
+
+                 <h4 className='mb-3'>Terms of Termination</h4>
+                 <p className='light-text mb-3'>This Agreement is effective until terminated either by BCE or you. We, in our sole discretion, may suspend or terminate this Agreement at any time with or without notice, and may deny you access to the Sites or any portion thereof as a result. You may also terminate this Agreement at any time by discontinuing your use of the Sites and terminating your account. Upon termination of this Agreement by us or you, you must destroy all materials obtained from the Sites, including any and all copies of such materials whether made under this Agreement or otherwise.</p>
+                 <p className='light-text mb-3'>Once a cancellation request has been made or implemented by either party, Member will have access to Site for the remainder of the billing cycle and your membership will be cancelled as of the date of the subsequent billing payment due date.  (Example: If the billing date is February 10th and your cancellation is received on January 20th, you will have access until February 9th and no other payments will process.)</p>
+                 <p className='light-text mb-3'>To cancel your membership, follow the below steps:</p>
+                 <ul>
+                    <li>Log into your BCE back office</li>
+                    <li>Enter your email address</li>
+                    <li>Enter the verification code emailed</li>
+                    <li>Select the BCE subscription on the left</li>
+                    <li>Click the Current Plan Tab</li>
+                    <li>Click “cancel subscription”</li>
+                 </ul>
+
+                 <h2 className='mb-3'>Refund Policy</h2>
+                 <p className='light-text mb-3'>There is a no refund policy. Breaking Chains has a 7-day free trial membership. Within 7-days, if you would like to cancel, do the following:</p>
+                 <p className='light-text mb-3'>1.            Log into your back office</p>
+                 <p className='light-text mb-3'>2.            Click on MEMBER DASHBOARD and scroll down to MY ACCOUNT</p>
+                 <p className='light-text mb-3'>3.            Under ACCOUNT DETAILS click on CANCEL MEMBERSHIP</p>
+                 <p className='light-text mb-3'>4.            Then click on YES, CANCEL MY MEMBERSHIP to confirm your cancellation.</p>
+                 <p className='light-text mb-3'>If you cancel after the 7-day trial period or a billing cycle, your membership will remain active for the current cycle and will cancel at the end of that cycle.  You will not be charged for the upcoming billing cycle.</p>
+
+                 <h2 className='mb-3'>Links to Other Sites</h2>
+                 <p className='light-text mb-3'>Our Site contains links to other websites for your information and convenience, or to provide additional shopping for various other goods and services through our Merchant and Services Partners. These third-party websites are responsible for, and undertake to maintain, their own site terms of use. We suggest that you carefully review the terms of use of each site you choose to access from our Site.</p>
+
+                 <h2 className='mb-3'>User’s License Grant to Site</h2>
+                 <p className='light-text mb-3'>Except with regard to personal information, all information which you post on this site or communicate to BCE through this site (collectively “Submissions”) shall forever be the property of BCE. BCE shall not treat any submission as confidential and shall not incur any liability as a result of any similarities that may appear in future BCE services or products. Without copy, BCE shall have exclusive ownership of all present and future existing rights to any Submission of every kind and nature everywhere. You acknowledge that you are fully responsible for the message, including its legality, reliability, appropriateness, originality and copyright. You hereby represent and warrant that your Submission does not infringe the rights of any third party.</p>
+
+                 <h2 className='mb-3'>User Conduct</h2>
+                 <p className='light-text mb-3'>By using features of this site that allow you to post or otherwise transmit information to or through this site, or which may be seen by other users, you agree that you shall not upload, post, or otherwise distribute or facilitate distribution of any content – including text, communications, video, software, images, sounds, data, or other information – that:</p>
+
+                 <p className='light-text mb-3'>A. is unlawful, threatening, abusive, harassing, defamatory, libelous, deceptive, fraudulent, invasive of another’s privacy, tortious, obscene, sexually explicit or graphic, or otherwise in violation of this site’s rules or policies;</p>
+                 <p className='light-text mb-3'>B. infringes any patent, trademark, service mark, trade secret, copyright, moral right, right of publicity, privacy or other proprietary right of any party</p>
+
+                 <p className='light-text mb-3'>C. constitutes unauthorized or unsolicited advertising, junk or bulk email (also known as “spamming”), chain letters, any other form of unauthorized solicitation, or any form of lottery or gambling</p>
+
+                 <p className='light-text mb-3'>D. contains software viruses or any other computer code, files, or programs that are designed or intended to disrupt, damage, or limit the functioning of any software, hardware, or telecommunications equipment or to damage or obtain unauthorized access to any data or other information of any third party</p>
+
+                 <p className='light-text mb-3'>E. impersonates any person or entity, including any employee or representative of this site, its licensors or advertisers.
+You also agree that you shall not harvest or collect information about the users of this site or use such information for the purpose of transmitting or facilitating transmission of unsolicited bulk electronic email or communications for any other commercial purpose of your own or a third party.</p>
+
+                 <p className='light-text mb-3'>You further agree that you shall not solicit or collect information, or attempt to induce any physical contact with, anyone 18 years old or younger without appropriate parental consent.</p>
+                 <p className='light-text mb-3'>This site generally does not pre-screen, monitor, or edit the content posted by users of this site. However, this site and its agents have the right, at their sole discretion, to remove any content that, in this site’s sole judgment, does not comply with the Site Submission Rules or is otherwise harmful, objectionable, or inaccurate. This site is not liable for any failure, delay, damages or results, in removing such content.</p>
+                 <p className='light-text mb-3'>You agree that your use of this site may be suspended or terminated immediately upon receipt of any notice which alleges that you have used this site in violation of these Rules and/or for any purpose that violates any local, state, federal or law of other nations, including but not limited to the posting of information that may violate third party rights, that may defame a third party, that may be obscene or pornographic, that may harass or assault other, that may violate hacking or other criminal regulations, etc. of its agents, officers, directors, contractors or employees. In such event, you agree that the owner of this site may disclose your identity and contact information, if requested by a government or law enforcement body or as a result of a subpoena or other legal action, and the owner of this site shall not be liable for damages or result of a subpoena or other legal action, and the owner of this site shall not be liable for damages or results thereof, and you agree not to bring any action or claim against the owner of this site for such disclosure.</p>
+
+                 <h2 className='mb-3'>Intellectual Property Rights</h2>
+                 <h4 className='mb-3'>Copyright</h4>
+                 <p className='light-text mb-3'>The Site design, text, content, selection and arrangement of elements, organization, graphics, compilation, magnetic translation, digital conversion, and other matters related to the Site are protected under applicable copyright laws, ALL RIGHTS RESERVED. The posting of any such elements on the Site does not constitute a waiver of any right in such elements. You do not acquire ownership rights to any such elements viewed through the Site. Except as otherwise provided herein, none of these elements may be used, copied, reproduced, downloaded, posted, displayed, transmitted, mechanical, photocopying, recording, or otherwise, without BCE’s prior written permission.</p>
+
+                 <h4 className='mb-3'>Trademark</h4>
+                 <p className='light-text mb-3'>Breaking Chains Enterprises, LLC and its subsidiaries’ name, logo, and all non-third-party product names, BCE names, and other logos, unless otherwise noted, are trademarks and/or trade dress of Breaking Chains Enterprises, LLC. The use or misuse of any Marks or any other materials contained on the Site, without the prior written permission of their owner, is expressly prohibited.</p>
+
+                 <h2 className='mb-3'>Third Party Sites</h2>
+                 <p className='light-text mb-3'>You may be transferred to online merchants or other third-party sites through links or frames from this site. You are cautioned to read their Terms and Conditions and/or Privacy Policies before using such sites. These sites may contain information or material that is illegal, unreasonable or that some people may find inappropriate or offensive. These other sites are not under the control of BCE and are not monitored or reviewed by BCE. The inclusion of such a link or frame does not imply endorsement of this site by BCE, its advertisers or licensors, any association with its operators and is provided solely for your convenience. You agree that BCE and its licensors have no liability whatsoever from such third party sites and your usage of them.</p>
+
+                 <h2 className='mb-3'>Disclaimer of Warranties</h2>
+                 <p className='light-text mb-3'>BCE, its advertisers and licensors make no representation or warranties about this site, the suitability of the information contained on or received through use of this site, or any service or products received through this site. All information and use of this site are provided “as is” without warranty of any kind. BCE, advertisers and/or its licensors hereby disclaim all warranties without regards to this site, the information contained or received through use of this site, and any services or products received through this site, including all express, statutory, and implied warranties of merchantability, fitness for a particular purpose, title and non-infringement. BCE, advertisers and/or its licensors do not warrant that the contents or any information received through this site are accurate, reliable or correct; that this site will be available at any particular time or location; that any defects or errors will be corrected; or that the contents of any information received through this site is free of viruses or other harmful components. Your use of this site is solely at your risk. User agrees that it has relied on no warranties, representations or statements other than in this agreement. Because some jurisdictions do not permit the exclusion of certain warranties, these exclusions may not apply to you but shall apply to the maximum extent permitted by law of your jurisdiction.</p>
+
+                 <h2 className='mb-3'>Limitation of Liability</h2>
+                 <p className='light-text mb-3'>Under no circumstances shall BCE, advertisers and/or its licensors be liable for any direct, indirect, punitive, incidental, special, or consequential damages that result from the use or inability to use, this site. This limitation applies whether the alleged liability is based on contract, tort, negligence, strict liability, or any other basis, even if BCE, advertisers and/or its licensors have been advised of the possibility of such damage. Because some jurisdictions do not allow the exclusion or limitation of incidental or consequential damages, BCE, advertisers and/or its respective licensors’ liability in such jurisdictions shall be limited to the maximum extent permitted by law of your jurisdiction.</p>
+
+                 <h2 className='mb-3'>Indemnification</h2>
+                 <p className='light-text mb-3'>You agree to defend, indemnify, and hold harmless BCE, its advertisers, licensors, subsidiaries and other affiliated companies, and their employees, contractors, officers, agents and directors from all liabilities, claims, and expenses, including attorney’s fees, that arise from your use of this site, or any services, information or products from this site, or any violation of this Agreement. BCE reserves the right, at its own expense, to assume the exclusive defense and control of any matter otherwise subject to indemnification by you, in which event you shall cooperate with BCE in asserting any available defenses.</p>
+
+                 <h2 className='mb-3'>Legal Compliance</h2>
+                 <p className='light-text mb-3'>BCE may suspend or terminate this Agreement or User’s use immediately upon receipt of any notice which alleges that User has used this site for any purpose that violates any local, state, federal or law of other nations, including but not limited to the posting of information that may violate third party rights, that may defame a third party, that may be obscene or pornographic, that may harass or assault other, that may violate hacking or other criminal regulations of its agent, officers, directors, contractors or employees. In such event, BCE may disclose the User’s identity and a subpoena or other legal action, and BCE shall not be liable for damages or results thereof and User agrees not to bring any action or claim against BCE for such disclosure.</p>
+
+                 <h2 className='mb-3'>Choice of Law and Forum</h2>
+                 <p className='light-text mb-3'>This site (excluding third party linked sites) is controlled by BCE from its offices within the State of Georgia, U.S. of America. It can be accessed from all 50 states as well as from other countries around the world to the extent permitted by site. As each of these places has laws that may differ from Georgia, by accessing this site, both you and the BCE agree that the statutes and laws of Georgia shall apply to any actions or claims arising out of or in relation to this Agreement or your use of this site, without regards to conflicts of laws principles thereof. You and BCE also agree and hereby submit to the filing of any claim only in the exclusive personal jurisdiction and venue of Georgia and any legal proceedings shall be conducted in English. BCE makes no representation that materials on this site are appropriate or available for use in other locations, and accessing them from territories where their contents are illegal is prohibited.</p>
+
+                 <h2 className='mb-3'>Miscellaneous</h2>
+                 <p className='light-text mb-3'>This Agreement incorporates by reference the Site Submission Rules if this site allows posting and posts such Rules. This Agreement constitutes the entire agreement between the parties related to the subject matter thereof, supersedes any prior or contemporaneous (oral, written or electronic) agreement between the parties and shall not be changed except by written agreement signed by an officer of BCE. If any provision of this Agreement is prohibited by law are held to be unenforceable, the remaining provisions hereof shall not be affected, and this Agreement as much as possible under applicable law shall continue in full force and effect as if such unenforceable provision had never constituted a part hereof and the unenforceable provision shall be automatically amended so as to best accomplish the objectives of such unenforceable provision within the limits of applicable law.</p>
+                 <p className='light-text mb-3'>This site reserves the right to revise these provisions at its discretion, so check back from time to time to be sure you are complying with the current version. Any new feature or tools which are added to the Sites shall be subject to this Agreement, as amended. New versions of this Agreement will not apply retroactively, but shall immediately replace and supersede the previous Agreement upon posting. Your continued access and use of the Sites, or any part thereof, following the posting of the revised Agreement means that you accept and agree to the changes.</p>
+                </div>
+            </div>
+        </div>
+        <Footer/>
+        </>
+    )
+}
+
+export default Terms;

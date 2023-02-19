@@ -18,7 +18,7 @@ router.post('/register',[
 
 router.post("/login", async (req, res) => {
     try {
-
+      console.log(req.body.email, req.body.password)
         if (!req.body.email) return res.status(400).send({status:0, msg:"Email is required"})
         if (!req.body.password) return res.status(400).send({status:0, msg:"Password is required"})
 

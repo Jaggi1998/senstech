@@ -1,0 +1,21 @@
+.forget-pass {
+    display: block;
+    float: right;
+}
+
+.login-wrap {
+    padding: 10% 25% 10% 25%;
+}
+
+.blue-text {
+    color: #0070C1;
+}
+.pink-text {
+    color:#E86C57;
+}
+.login-btn {
+    display: block;
+    margin: auto;
+    padding-left: 45%;
+    padding-right: 45%;
+}
