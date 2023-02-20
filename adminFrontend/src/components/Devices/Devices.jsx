@@ -17,12 +17,7 @@ const Devices = () => {
     const [showAlert, setShowAlert] = useState(false);
 
     const { user } = useSelector(state => ({ ...state.auth }));
-    const  userid2 = useSelector(state => ({ ...state }));
   const userId = user?.id;
-
-
-  console.log("userid2",userid2)
-
     const handleShow = (e) => {
       setOrderId(e)
       setShow(true);
