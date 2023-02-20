@@ -69,7 +69,7 @@ const Login = () => {
       <div className="container-fluid" style={{ backgroundImage:`url(${SigninImg})`, backgroundSize:"100%", backgroundRepeat:"no-repeat", backgroundColor:"#f5f8fb" }}>
         <div className="row">
 
-<div className="col-5 mx-auto my-5">
+<div className="col-md-10 col-lg-5 mx-auto my-5">
   
 <form className="mt-5 p-5 btn-border " style={{border:"1px solid #A3A3A3", backgroundColor:"#ffffff"}} >
   <h1 className="light-text text-center mb-4 grey-text" >Sign in to our platform</h1>

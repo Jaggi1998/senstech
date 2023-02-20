@@ -15,14 +15,20 @@ const Devices = () => {
     let [orderId,setOrderId] = useState("")
     let [orderStatus,setOrderStatus] = useState("")
     const [showAlert, setShowAlert] = useState(false);
-    const handleClose = () => setShow(false);
+
+    const { user } = useSelector(state => ({ ...state.auth }));
+    const  userid2 = useSelector(state => ({ ...state }));
+  const userId = user?.id;
+
+
+  console.log("userid2",userid2)
+
     const handleShow = (e) => {
-      console.log("this is ee==========", e)
       setOrderId(e)
       setShow(true);
     };
     useEffect(() => {
-      const url = `${API_URL}/get-devices`;
+      const url = `${API_URL}/get-devices/${userId}`;
   
       const fetchData = async () => {
         try {
@@ -59,9 +65,7 @@ const Devices = () => {
       result = await result.json();
       
     }
-    function cancel () {
-      setShowAlert(false)
-    }
+
   return (
     <>
       <Sidebar
@@ -89,6 +93,7 @@ const Devices = () => {
                     </tr>
                   </thead>
               <tbody>
+              
                 {devices &&
                   devices.length > 0 &&
                   devices.map((device, index) => {
@@ -112,60 +117,8 @@ const Devices = () => {
                   })}
                 </tbody>
               </table>
+              {devices.length <= 0 ? <div className="text-center mt-5" ><h1>No Device Added</h1></div> : ""}
               </div>
-              <SweetAlert success title="Video Added" show={showAlert} onConfirm={cancel} onCancel={cancel} ></SweetAlert>
-              <Modal show={show} onHide={handleClose} style={{ width: "100%" }}>
-                          <Modal.Header closeButton>
-                            <Modal.Title>Update Status</Modal.Title>
-                          </Modal.Header>
-                          <Modal.Body>
-                            <div className="card-header">
-                              <strong></strong>
-                            </div>
-                            <div className="card-body">
-                              <div className="row">
-                              <div className=" col-sm-12 justify-center">
-                                <div className="mt-2">
-
-                              <input class="form-check-input" type="radio"  onChange={(e) =>{setOrderStatus(e.target.value)}} value={2} name="flexRadioDefault" id="flexRadioDefault1"/>
-                              <label class="form-check-label light-text ms-2" for="flexRadioDefault1">Shipped</label>
-                                </div>
-                                <hr />
-                                <div className="mt-2">
-
-                              <input class="form-check-input" type="radio" onChange={(e) =>{setOrderStatus(e.target.value)}} value={3} name="flexRadioDefault" id="flexRadioDefault1"/>
-                              <label class="form-check-label light-text ms-2" for="flexRadioDefault1">Delivered</label>
-                                </div>
-                                <hr />
-                                <div className="mt-2">
-
-                              <input class="form-check-input" type="radio" onChange={(e) =>{setOrderStatus(e.target.value)}}  value={0}  name="flexRadioDefault" id="flexRadioDefault1"/>
-                              <label class="form-check-label light-text ms-2" for="flexRadioDefault1">Cancel</label>
-                                </div>
-
-                              </div>
-                              </div>
-
-                            </div>
-                          </Modal.Body>
-                          <Modal.Footer>
-                            <button
-                              className="btn btn-sm btn-danger btn-border"
-                              type="reset"
-                              onClick={handleClose}
-                            >
-                              <i className="mdi mdi-lock-reset"></i> Cancel
-                            </button>
-
-                            <button
-                              className="btn btn-sm btn-success float-right btn-border btn-blue"
-                             onClick={updateStatus}
-                              type="submit"
-                            >
-                              <i className="mdi mdi-gamepad-circle "></i> Continue
-                            </button>
-                          </Modal.Footer>
-                        </Modal>
             </div>
           </>
         }

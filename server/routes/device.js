@@ -19,5 +19,5 @@ router.post('/add-device',[
     check('parameter', 'Please enter a valid parameter').trim().notEmpty().isNumeric()
 ], DEVICE.addDevice);
 
-router.get('/get-devices', DEVICE.getDevice);
+router.get('/get-devices/:userId', DEVICE.getDevice);
 module.exports = router;
