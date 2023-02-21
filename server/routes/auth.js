@@ -19,15 +19,15 @@ router.post('/register',[
 router.post("/login", async (req, res) => {
     try {
       console.log(req.body.email, req.body.password)
-        if (!req.body.email) return res.status(400).send({status:0, msg:"Email is required"})
-        if (!req.body.password) return res.status(400).send({status:0, msg:"Password is required"})
+        if (!req.body.email) return res.status(400).send({status:0, message:"Email is required"})
+        if (!req.body.password) return res.status(400).send({status:0, message:"Password is required"})
 
         User.findOne({ email: req.body.email }, (err, user) => {
           if (err) return res.json({ success: false });
           if (!user)
             return res.status(400).json({
               isAuth: false,
-              msg: "Email Not Found"
+              message: "Email Not Found"
             });
           if (user) {
             user.comparePassword(req.body.password, (err, isMatch) => {
@@ -35,7 +35,7 @@ router.post("/login", async (req, res) => {
               if (!isMatch)
                 return res.status(400).json({
                   isAuth: false,
-                  msg: "Wrong email or password"
+                  message: "Wrong email or password"
                 });
               user.generateToken((err, user) => {
                 if (err) return res.status(400).send(err);
