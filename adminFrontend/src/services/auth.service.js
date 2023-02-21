@@ -11,7 +11,7 @@ const login = (email, password) => {
       if (response.data.isAuth) {
         localStorage.setItem("user", JSON.stringify(response.data));
       }
-
+      console.log("response data", response)
       return response.data;
     });
 };
