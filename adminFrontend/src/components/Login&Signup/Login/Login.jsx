@@ -21,7 +21,7 @@ const Login = () => {
   
   const { isLoggedIn } = useSelector(state => state.auth);
   const { message } = useSelector(state =>
-    state.message ? state.message : ""
+    state ? state : ""
   );
   console.log(message)
 

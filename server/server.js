@@ -25,7 +25,7 @@ app.use('/api/users', users);
 app.use('/api', device);
 // app.use('/api', slotBook);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8081;
 
 
 app.use(express.static(path.join(__dirname, '../adminFrontend','build')));
