@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Card from "./Card";
 
 const TrainingVideosComponent = ({ videoList }) => {
-  console.log(videoList);
+
   return (
     <>
       <div class="card">

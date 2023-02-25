@@ -1,81 +1,119 @@
-import React, { useEffect } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import React, { useEffect , useState} from "react";
+import { useSelector } from "react-redux";
 import Sidebar from "../../Sidebar/Sidebar";
-import { useDispatch, useSelector } from "react-redux";
-import "../ProfileCommon/ProfileCommon.css";
-import { Link } from "react-router-dom";
-import { getUsers, deleteUser } from "../../../slices/user";
-import './UserListing.css'
-const UsersList = () => {
-  let isLoading = false;
-  const { userList } = useSelector(state => (state.user ? state.user : []));
-  const { user } = useSelector(state => ({ ...state.auth }));
-  const userId = user?.id;
-  const dispatch = useDispatch();
-  useEffect(() => {
-    if (!isLoading) {
-      dispatch(getUsers({ userId }));
-      isLoading = true;
-    }
-  }, [dispatch, userId]);
+import {API_URL} from '../../../constants/urls';
+import { NavLink } from "react-router-dom";
 
-  const onDeleteUser = userId => {
-    dispatch(deleteUser({ userId }));
-  };
+const Users = () => {
+    let [users,setUsers] = useState([])
+    let [show,setShow] = useState(false)
+    let [orderId,setOrderId] = useState("")
+    let [orderStatus,setOrderStatus] = useState("")
+    const [showAlert, setShowAlert] = useState(false);
+
+    const { user } = useSelector(state => ({ ...state.auth }));
+  const adminId = user?.id;
+    const handleShow = (e) => {
+      setOrderId(e)
+      setShow(true);
+    };
+    useEffect(() => {
+      const url = `${API_URL}/get-users/${adminId}`;
+  
+      const fetchData = async () => {
+        try {
+          const response = await fetch(url);
+          const json = await response.json();
+          
+          await setUsers(json);
+       
+        } catch (error) {
+          console.log("error", error);
+        }
+      };
+  
+      fetchData();
+    }, [showAlert]);
+
+
+    const updateStatus = async () =>{
+      let orderInfo = { orderId, orderStatus };
+      console.log("orderInfo", orderInfo)
+      let result = await fetch(`${API_URL}/update-orders`, {
+        method: "POST",
+        body: JSON.stringify(orderInfo),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        }
+      });
+     
+      if (result.status=== 200) {
+        setShow(false)
+        setShowAlert(true)
+      }
+      result = await result.json();
+      
+    }
 
   return (
     <>
       <Sidebar
         element={
           <>
+            {" "}
             <div className="container-fluid">
-              <div className="row my-5">
-              <div class="col-md-12">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title text-uppercase mb-0">Manage Users</h5>
-            </div>
-            <div class="table-responsive">
-                <table class="table no-wrap user-table mb-0 text-center">
+              <div className="row" style={{ marginTop: "7%" }}>
+                <div className="col-md-12 mt-5">
+                  <div className="my-5">
+                    <h3 className="blue-text ms-4">Users</h3>
+                  </div>
+                </div>
+              
+              </div>
+              <div className="row">
+              <table class="table no-wrap user-table mb-0 text-center">
                   <thead>
                     <tr>
-                      <th scope="col" class="border-0 text-uppercase font-medium pl-4">S.No</th>
-                      <th scope="col" class="border-0 text-uppercase font-medium">Name</th>
-                      <th scope="col" class="border-0 text-uppercase font-medium">Username</th>
-                      <th scope="col" class="border-0 text-uppercase font-medium">Email</th>
-                      <th scope="col" class="border-0 text-uppercase font-medium">Action</th>
+                      <th scope="col" class="border-0 text-uppercase font-medium blue-text pl-4">S.No</th>
+                      <th scope="col" class="border-0 text-uppercase font-medium blue-text">Name</th>
+                      <th scope="col" class="border-0 text-uppercase font-medium blue-text">Email</th>
+                      <th scope="col" class="border-0 text-uppercase font-medium blue-text">Phone no.</th>
+                      <th scope="col" class="border-0 text-uppercase font-medium blue-text">Action</th>
                     
                     </tr>
                   </thead>
-                  <tbody>
-                     {userList &&
-                         userList.length > 0 &&
-                         userList.map((user, index) => (
-                          <tr key={user.id}>
-                          <td class="pl-4">{index+1}</td>
+              <tbody>
+              
+                {users &&
+                  users.length > 0 &&
+                  users.map((user, index) => {
+                    return (
+                      <>
+                       
+                          <tr key={index}>
+                          <td class="pl-4 grey-text">{index+1}</td>
                           <td>
-                              <h5 class="font-medium mb-0">{user.name}</h5>
+                              <span class="font-medium mb-0 grey-text">{user.name}</span>
                           </td>
                           <td>
-                              <span class="text-muted">{user.username}</span>
+                              <span class="font-medium grey-text">{user.email}</span>
                           </td>
                           <td>
-                              <span class="text-muted">{user.email}</span>
+                              <span class="font-medium grey-text">{user.phone_no}</span>
                           </td>
                           <td>
-                            <button type="button" class="btn btn-primary btn-circle btn-lg btn-circle"><i class="fa-solid fa-pen-to-square"></i> </button>
-                            <button type="button" class="btn btn-danger btn-circle btn-lg btn-circle ms-2" onClick={e => onDeleteUser(user.id)}><i class="fa-solid fa-trash"></i> </button>
+                        
+                            <button type="button" class="btn blue-background text-white" ><i class="fa-solid fa-trash"></i></button>
+            
                           </td>
                         </tr>
-                         ))}
-                   
-                 
-                  </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+                      </>
+                    );
+                  })}
+                </tbody>
+              </table>
+              {users.length <= 0 ? <div className="text-center mt-5" ><h1>No User Added</h1></div> : ""}
               </div>
             </div>
           </>
@@ -85,4 +123,4 @@ const UsersList = () => {
   );
 };
 
-export default UsersList;
+export default Users;

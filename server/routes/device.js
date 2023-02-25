@@ -20,4 +20,7 @@ router.post('/add-device',[
 ], DEVICE.addDevice);
 
 router.get('/get-devices/:userId', DEVICE.getDevice);
+
+router.get('/get-channels/:deviceId', DEVICE.getChannels);
+
 module.exports = router;

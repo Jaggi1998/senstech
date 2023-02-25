@@ -1,13 +1,8 @@
 import React, { useEffect , useState} from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Sidebar from "../Sidebar/Sidebar";
-import toy from "../../Static/Img/Marketplace/toy.png";
-import Modal from "react-bootstrap/Modal";
-// import "./Devices.css";
-import SweetAlert from "react-bootstrap-sweetalert";
-import { getMyOrders } from "../../slices/user";
 import {API_URL} from '../../constants/urls';
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Devices = () => {
     let [devices,setDevices] = useState([])
@@ -82,7 +77,7 @@ const Devices = () => {
                     <tr>
                       <th scope="col" class="border-0 text-uppercase font-medium blue-text pl-4">S.No</th>
                       <th scope="col" class="border-0 text-uppercase font-medium blue-text">Device Id</th>
-                      <th scope="col" class="border-0 text-uppercase font-medium blue-text">Device Parameters</th>
+                      <th scope="col" class="border-0 text-uppercase font-medium blue-text">Device Channels</th>
                       <th scope="col" class="border-0 text-uppercase font-medium blue-text">Action</th>
                     
                     </tr>
@@ -104,7 +99,9 @@ const Devices = () => {
                               <span class="font-medium grey-text">{device.parameter}</span>
                           </td>
                           <td>
-                            <button type="button" class="btn blue-background text-white " onClick={()=> {handleShow(device._id)}} >Usage</button>
+                          <NavLink to="/device-channels/" state={{deviceId: device.deviceId}}>
+                            <button type="button" class="btn blue-background text-white" >View</button>
+            </NavLink>
                           </td>
                         </tr>
                       </>

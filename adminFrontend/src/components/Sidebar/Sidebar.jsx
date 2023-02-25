@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 // import SmallFooter from "../Footer/smallFooter";
-import image from "../../Static/Img/Sidebar/Ellipse 1900.png";
+import image from "../../Static/Img/Sidebar/08_Supreme-ai.svg";
 import "./Sidebar.css";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -10,8 +10,9 @@ import { useSelector } from "react-redux";
 const Sidebar = props => {
   let [show, setShow] = useState();
   const { user } = useSelector(state => ({ ...state.auth }));
-  const userSeed = user?.seed;
+  const isAdmin = user?.role;
   //assigning location variable
+  console.log("isAdmin",isAdmin)
 
   const location = useLocation();
 
@@ -119,20 +120,29 @@ const Sidebar = props => {
               <div>
                 {" "}
                 <div className="px-2 my-2">
-                  <div className="mt-5 sidebar-img-wrap" id="sidebar-img-wrap">
+                  <div className="sidebar-img-wrap" id="sidebar-img-wrap">
                     <img
                       className="sidebar-img mt-3 rounded-circle"
                       src={image}
                       alt=""
-                      width="100"
+                      style={{width:"100%"}}
                     />
                   </div>
                 </div>
                 <div className="nav_list">
                   <NavLink to='/devices-list' type="button" className="nav_link text-white">
-                  <i class="fa-solid fa-microchip"></i>{" "}
-                    <span className="nav_name">Devices</span>{" "}
+                  <i class="fa-solid fa-microchip"></i>
+                    <span className="nav_name">Devices</span>
                   </NavLink>
+
+                  {
+                  isAdmin=== 'admin' ? 
+                  <NavLink to='/users-list' type="button" className="nav_link text-white">
+                  <i class="fa-solid fa-user"></i>
+                    <span className="nav_name">Users</span>
+                  </NavLink> : " " 
+                  }
+                 
 
                  
                 </div>

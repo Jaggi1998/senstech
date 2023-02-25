@@ -17,6 +17,9 @@ const UserSchema = new Schema(
         type: Number,
         default: 4
     },
+    adminId:{
+       type: mongoose.Schema.Types.ObjectId,
+    },
     phone_no: {
       type: Number,
     },

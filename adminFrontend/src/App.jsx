@@ -5,7 +5,8 @@ import Home from "./components/Home/Home";
 import Protected from "./components/Protected";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Login from "./components/Login&Signup/Login/Login";
-import Devices from "./components/Devices/Devices"
+import Devices from "./components/Devices/Devices";
+import Channels from "./components/Devices/DeviceChannels";
 import Logout from "./components/Login&Signup/Logout/Logout";
 import Withdraw from "./components/WithrawUsers/WithrawUsers";
 import Signup from "./components/Login&Signup/Signup/Signup";
@@ -28,28 +29,7 @@ const App = () => {
         <Route path="/products" element={<Products />}></Route>
         <Route path="/orders" element={<Orders />}></Route>
         <Route path="/withdraw" element={<Withdraw />}></Route>
-        {/* <Route path="/chat" element={<Chat />}></Route>
-        <Route path="/contact-us" element={<ContactUs />}></Route>
-        <Route path="/about" element={<About />}></Route>
-        <Route path="/terms" element={<Terms />}></Route>
-        <Route path="/privacy-policy" element={<Privacy />}></Route>
-        <Route path="/reset-password" element={<ResetPassword />}></Route> */}
-        {/* <Route path="/new-password" element={<NewPassword />}></Route> */}
-        {/* <Route path="/new-password/:token" element={<NewPassword />}></Route>
-        <Route path="/check-email" element={<CheckEmail />}></Route>
-        <Route path="/reset-done" element={<ResetDone />}></Route> */}
-        {/* <Route
-          path="/create-profile"
-          element={<Protected Component={CreateProfile} />}
-        ></Route>
-        <Route
-          path="/edit-profile"
-          element={<Protected Component={EditProfile} />}
-        ></Route> */}
-        {/* <Route
-        path="/my-profile"
-        element={<Protected Component={MyProfile} />}
-      ></Route> */}
+       
         <Route
           path="/users-list"
           element={<Protected Component={UsersList} />}
@@ -57,6 +37,10 @@ const App = () => {
         <Route
           path="/devices-list"
           element={<Protected Component={Devices} />}
+        ></Route>
+        <Route
+          path="/device-channels"
+          element={<Protected Component={Channels} />}
         ></Route>
          <Route
           path="/training-videos"

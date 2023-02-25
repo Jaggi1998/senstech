@@ -1,0 +1,41 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 842 567" width="842" height="567">
+	<title>08_Supreme-ai</title>
+	<defs>
+		<linearGradient id="g1" x1="518.8" y1="304" x2="345" y2="292.3" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#00c4ff"/>
+			<stop offset="1" stop-color="#001973"/>
+		</linearGradient>
+		<linearGradient id="g2" x1="427.5" y1="347.8" x2="336.4" y2="341.6" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#001973"/>
+			<stop offset="1" stop-color="#00c4ff"/>
+		</linearGradient>
+		<linearGradient id="g3" x1="323.6" y1="263.6" x2="497.5" y2="275.3" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#00c4ff"/>
+			<stop offset="1" stop-color="#001973"/>
+		</linearGradient>
+		<linearGradient id="g4" x1="415" y1="219.8" x2="506.1" y2="226" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#001973"/>
+			<stop offset="1" stop-color="#00c4ff"/>
+		</linearGradient>
+	</defs>
+	<style>
+		.s0 { fill: url(#g1) } 
+		.s1 { fill: url(#g2) } 
+		.s2 { fill: url(#g3) } 
+		.s3 { fill: url(#g4) } 
+	</style>
+	<g id="graphics">
+		<g id="&lt;Group&gt;">
+			<g id="&lt;Group&gt;">
+				<g id="&lt;Group&gt;">
+					<path id="&lt;Path&gt;" class="s0" d="m496.1 161.9c0.5 18.4-7.2 30.3-22.9 39.5-19.2 11.2-39 22.8-58.3 33.9-21.5 12.4-26.8 27.4-11.4 47.3-5 11-22.4 8.9-32.1 7.3-10.7-6.5-13.9-20.8-13.3-32.5 0.9-16.7 9.7-32.5 21.8-43.8q58-43.7 116.1-87.2 0 17.7 0.1 35.5z"/>
+					<path id="&lt;Path&gt;" class="s1" d="m403.5 282.6c0 0-2.4-1.9-6.2-5.3-18.3-16.3-42.1-41.5-17.4-63.7-8.1 6.2-14.9 13.6-20.8 21.5-17.5 23.4-14.1 61.1-13.3 89.3 0.4 13.5 16.4 16.5 26.6 11.1 11.2-6 23.1-12.6 33.9-18.5 16.6-8.9 8.5-25.3-2.8-34.4z"/>
+				</g>
+				<g id="&lt;Group&gt;">
+					<path id="&lt;Path&gt;" class="s2" d="m346.4 405.8c-0.5-18.5 7.2-30.4 22.9-39.6 19.2-11.2 39-22.8 58.3-33.9 21.5-12.3 26.8-27.4 11.4-47.3 5-10.9 22.4-8.9 32.1-7.3 10.7 6.5 13.9 20.8 13.3 32.5-0.9 16.7-9.7 32.5-21.8 43.8q-58 43.7-116.1 87.2 0-17.7-0.1-35.5z"/>
+					<path id="&lt;Path&gt;" class="s3" d="m439 285c0 0 2.3 1.9 6.2 5.3 18.3 16.3 42.1 41.5 17.4 63.7 8.1-6.2 14.9-13.6 20.8-21.5 17.5-23.4 14.1-61.1 13.3-89.3-0.4-13.5-16.4-16.5-26.6-11.1-11.2 6-23.1 12.6-33.9 18.5-16.6 8.9-8.5 25.3 2.8 34.4z"/>
+				</g>
+			</g>
+		</g>
+	</g>
+</svg>

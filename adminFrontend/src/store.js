@@ -9,6 +9,7 @@ import cartReducer from "./slices/cart";
 const reducer = {
   auth: authReducer,
   user: userReducer,
+  message:messageReducer,
   productList: productsReducer
 };
 
