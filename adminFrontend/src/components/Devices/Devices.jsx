@@ -13,6 +13,7 @@ const Devices = () => {
 
     const { user } = useSelector(state => ({ ...state.auth }));
   const userId = user?.id;
+
     const handleShow = (e) => {
       setOrderId(e)
       setShow(true);
@@ -63,11 +64,27 @@ const Devices = () => {
           <>
             {" "}
             <div className="container-fluid">
-              <div className="row" style={{ marginTop: "7%" }}>
-                <div className="col-md-12 mt-5">
-                  <div className="my-5">
-                    <h3 className="blue-text ms-4">Devices</h3>
-                  </div>
+            <div className="row">
+                <div className="col-md-10 mx-auto">
+                  <div className="row  my-5">
+                <div className="col-6 mt-5">
+                    <h3 className="blue-text">Devices</h3>
+                </div>
+               {user.role==='admin'&& user.level <= 2 ?  <div className="col-6 mt-5">
+                 
+                 <NavLink to='/add-device' > <button
+                 type="button"
+                 style={{display:"block"}}
+                 className="btn ms-auto blue-background white submit-btn py-2 px-4"
+                
+               >
+                 Add Device
+               </button></NavLink> 
+                 
+                   </div> : "" } 
+               
+              
+                </div>
                 </div>
               
               </div>

@@ -11,8 +11,10 @@ import Logout from "./components/Login&Signup/Logout/Logout";
 import Withdraw from "./components/WithrawUsers/WithrawUsers";
 import Signup from "./components/Login&Signup/Signup/Signup";
 import Orders from "./components/MyOrders/AllOrders";
+import AddDevice from "./components/Devices/AddDevice";
 import DashboardNext from "./components/Dashboard/DashboardNext";
 import UsersList from "./components/Users/UserListing/UserListing";
+import AddUser from "./components/Users/AddUser/AddUser";
 import TrainingVideos from "./components/TrainingVideos/TrainingVideos";
 import Products from "./components/Products/Products";
 import Marketplace from "./components/Marketplace/Marketplace";
@@ -35,8 +37,16 @@ const App = () => {
           element={<Protected Component={UsersList} />}
         ></Route>
         <Route
+          path="/add-user"
+          element={<Protected Component={AddUser} />}
+        ></Route>
+        <Route
           path="/devices-list"
           element={<Protected Component={Devices} />}
+        ></Route>
+        <Route
+          path="/add-device"
+          element={<Protected Component={AddDevice} />}
         ></Route>
         <Route
           path="/device-channels"

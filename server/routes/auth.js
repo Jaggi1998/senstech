@@ -8,11 +8,11 @@ const  User  = require("../models/user");
 
 router.post('/register',[
     check('name', 'Please enter a valid name').trim().notEmpty().isString(),
-    check('phone_no', 'Please enter a valid phone number').trim().notEmpty().isNumeric(),
     check('email', 'Please enter a valid email').trim().normalizeEmail().isEmail(),
+    check('phone_no', 'Please enter a valid phone number').trim().notEmpty().isNumeric(),
+    check('address', 'Please enter a valid address').trim().notEmpty().isString(),
     check('password', 'Password must include one lowercase character, one uppercase character, a number, a special character and minimum length of 8 characters.').notEmpty().matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$/, "i"),
     check('confirmPassword', 'Please enter confirm password').notEmpty(),
-    check('address', 'Please enter a valid address').trim().notEmpty().isString(),
 ], AUTH.postUser);
 
 

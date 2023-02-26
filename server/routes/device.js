@@ -16,6 +16,7 @@ router.get('/get-device-data/:deviceId', DEVICEDATA.getDeviceData);
 
 router.post('/add-device',[
     check('deviceId', 'Please enter a valid deviceId').trim().notEmpty().isString(),
+    check('userId', 'Please select a user').trim().notEmpty().isString(),
     check('parameter', 'Please enter a valid parameter').trim().notEmpty().isNumeric()
 ], DEVICE.addDevice);
 

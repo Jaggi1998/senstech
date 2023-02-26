@@ -6,17 +6,10 @@ import { NavLink } from "react-router-dom";
 
 const Users = () => {
     let [users,setUsers] = useState([])
-    let [show,setShow] = useState(false)
-    let [orderId,setOrderId] = useState("")
-    let [orderStatus,setOrderStatus] = useState("")
     const [showAlert, setShowAlert] = useState(false);
 
     const { user } = useSelector(state => ({ ...state.auth }));
   const adminId = user?.id;
-    const handleShow = (e) => {
-      setOrderId(e)
-      setShow(true);
-    };
     useEffect(() => {
       const url = `${API_URL}/get-users/${adminId}`;
   
@@ -33,28 +26,9 @@ const Users = () => {
       };
   
       fetchData();
-    }, [showAlert]);
+    }, []);
 
 
-    const updateStatus = async () =>{
-      let orderInfo = { orderId, orderStatus };
-      console.log("orderInfo", orderInfo)
-      let result = await fetch(`${API_URL}/update-orders`, {
-        method: "POST",
-        body: JSON.stringify(orderInfo),
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json"
-        }
-      });
-     
-      if (result.status=== 200) {
-        setShow(false)
-        setShowAlert(true)
-      }
-      result = await result.json();
-      
-    }
 
   return (
     <>
@@ -63,11 +37,25 @@ const Users = () => {
           <>
             {" "}
             <div className="container-fluid">
-              <div className="row" style={{ marginTop: "7%" }}>
-                <div className="col-md-12 mt-5">
-                  <div className="my-5">
-                    <h3 className="blue-text ms-4">Users</h3>
+              <div className="row">
+                <div className="col-md-10 mx-auto">
+                  <div className="row  my-5">
+                <div className="col-6 mt-5">
+                    <h3 className="blue-text">Users</h3>
+                </div>
+                <div className="col-6 mt-5">
+                 
+                <NavLink to='/add-user' > <button
+                type="button"
+                style={{display:"block"}}
+                className="btn ms-auto blue-background white submit-btn py-2 px-4"
+               
+              >
+                Add User
+              </button></NavLink> 
+                
                   </div>
+                </div>
                 </div>
               
               </div>

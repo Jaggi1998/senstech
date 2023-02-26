@@ -8,6 +8,6 @@ exports.getUsers = async (req, res) => {
         return res.status(200).send(user)
         
     } catch(err) {
-        return res.satus(400).send({status:0,msg:err.message})
+        return res.status(400).send({status:0,msg:err.message})
     }
 }

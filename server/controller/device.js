@@ -17,7 +17,7 @@ exports.addDevice = async (req, res) => {
             await Channel.create({deviceId, channelName:"d"+i })
         }
 
-        return res.status(201).send({msg:"Device added"})
+        return res.status(200).send({msg:"Device added"})
 
     } catch (err) {
         return res.status(400).send({msg:err.message})

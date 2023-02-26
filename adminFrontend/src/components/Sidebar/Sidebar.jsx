@@ -122,7 +122,7 @@ const Sidebar = props => {
                 <div className="px-2 my-2">
                   <div className="sidebar-img-wrap" id="sidebar-img-wrap">
                     <img
-                      className="sidebar-img mt-3 rounded-circle"
+                      className="sidebar-img"
                       src={image}
                       alt=""
                       style={{width:"100%"}}
