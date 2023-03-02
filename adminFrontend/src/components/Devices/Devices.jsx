@@ -70,7 +70,7 @@ const Devices = () => {
                 <div className="col-6 mt-5">
                     <h3 className="blue-text">Devices</h3>
                 </div>
-               {user.role==='admin'&& user.level <= 2 ?  <div className="col-6 mt-5">
+               {user?.role==='admin'&& user?.level <= 2 ?  <div className="col-6 mt-5">
                  
                  <NavLink to='/add-device' > <button
                  type="button"

@@ -7,10 +7,10 @@ const DataSchema = new Schema(
       type: String,
       required: true,
     },
-    data: {
-      type: Number,
-      required: true
-    },
+    data: [{
+      channel: String,
+      value: Number
+  }],
   },
 
   {

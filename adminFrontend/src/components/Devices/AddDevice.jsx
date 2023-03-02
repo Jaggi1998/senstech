@@ -18,7 +18,7 @@ const AddDevice = () => {
   const [message, setMessage] = useState("");
   const [errMsg, setErrMsg] = useState(false)
   const { user } = useSelector(state => ({ ...state.auth }));
-  const adminId = user.id;
+  const adminId = user?.id;
 
   useEffect(() => {
     const url = `${API_URL}/get-users/${adminId}`;

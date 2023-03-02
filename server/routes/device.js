@@ -8,7 +8,7 @@ const DEVICE = require ('../controller/device');
 
 router.post('/device-data',[
     check('deviceId', 'Please enter a valid deviceId').trim().notEmpty().isString(),
-    check('data', 'Please enter a valid data').trim().notEmpty().isNumeric()
+    
 ], DEVICEDATA.deviceData);
 
 

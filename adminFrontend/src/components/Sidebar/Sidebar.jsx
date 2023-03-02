@@ -70,7 +70,7 @@ const Sidebar = props => {
     dispatch(logout())
       .unwrap()
       .then(() => {
-        navigate("/login");
+        navigate("/");
       })
       .catch(err => {
         console.log(err);
