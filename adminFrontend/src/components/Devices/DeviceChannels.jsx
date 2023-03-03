@@ -1,4 +1,5 @@
 import React, { useEffect , useState} from "react";
+import { format } from 'timeago.js'
 import Sidebar from "../Sidebar/Sidebar";
 import {API_URL} from '../../constants/urls';
 import { useLocation } from 'react-router-dom';
@@ -21,8 +22,9 @@ console.log(location.state.deviceId)
           console.log("error", error);
         }
       };
-  
-      fetchData();
+        setInterval(() => {
+          fetchData();
+        }, 5000);
     }, []);
 
 
@@ -60,7 +62,7 @@ console.log(location.state.deviceId)
                               <div class="card-body">
                                 <h3 class="card-text">{channel.channelName}</h3>
                                 <h5 class="card-text">{channel.channelData}</h5>
-                                <p class="card-text"><small class="text-muted">Last uo</small></p>
+                                <p class="card-text"><small class="text-muted">Last Updated: {format(channel.updatedAt)}</small></p>
                               </div>
                             </div>
                           </div>

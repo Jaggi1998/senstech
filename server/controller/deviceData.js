@@ -1,4 +1,5 @@
-const DeviceData = require('../models/deviceData')
+const DeviceData = require('../models/deviceData');
+const Channel = require('../models/channels');
 const { validationResult } = require('express-validator');
 
 
@@ -10,11 +11,25 @@ exports.deviceData = async (req, res) => {
 
         let {deviceId, data} = req.body
 
+      let channels = await Channel.find({deviceId:deviceId})
+
+// console.timeLog
+      for (i=0; i<channels.length; i++) {
+        if (data[i]?.channel == channels[i].channelName) {
+            await channels[i].updateOne({channelData:data[i].value})
+        } else {
+            await channels[i].updateOne({channelData:0})
+        }
+      }
+
         await DeviceData.create({deviceId, data})
+
+
 
         return res.status(201).send({msg:"Data added"})
 
     } catch (err) {
+        console.log(err)
         return res.status(400).send({msg:err.message})
     }
 }
