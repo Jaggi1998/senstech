@@ -13,12 +13,13 @@ exports.deviceData = async (req, res) => {
 
       let channels = await Channel.find({deviceId:deviceId})
 
-// console.timeLog
       for (i=0; i<channels.length; i++) {
-        if (data[i]?.channel == channels[i].channelName) {
-            await channels[i].updateOne({channelData:data[i].value})
-        } else {
-            await channels[i].updateOne({channelData:0})
+        if(data[i]) {
+            if (data[i].channel == channels[i].channelName) {
+                await channels[i].updateOne({channelData:data[i].value})
+            } else {
+                await channels[i].updateOne({channelData:0})
+            }
         }
       }
 
