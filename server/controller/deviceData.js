@@ -1,7 +1,7 @@
+const { validationResult } = require('express-validator');
+const moment = require('moment');
 const DeviceData = require('../models/deviceData');
 const Channel = require('../models/channels');
-const { validationResult } = require('express-validator');
-
 
 exports.deviceData = async (req, res) => {
     try {
@@ -40,7 +40,28 @@ exports.getDeviceData = async (req, res) => {
         
       let deviceData =  await DeviceData.find({deviceId: req.params.deviceId})
 
-        return res.status(200).send(deviceData)
+      let File = []
+      let objects = []
+      let time = []
+      for (i=0; i < deviceData.length; i++) {
+        File.push(deviceData[i].data)
+        time.push(deviceData[i].createdAt)
+      }
+      let num = 0
+      for (j=0; j< File.length; j++) {   
+        
+          num = num+1
+        let currObj = {eventId:num, deviceId:req.params.deviceId, time: moment(time[j]).format("DD-MM-YYYY")}
+
+       File[j].forEach(channel => {
+         let obj = { [channel.channel] : channel.value}
+          Object.assign(currObj, obj)
+        });
+        
+        objects.push(currObj)
+      }
+
+        return res.status(200).send(objects)
         
     } catch (err) {
         return res.status(400).send({msg:err.message})

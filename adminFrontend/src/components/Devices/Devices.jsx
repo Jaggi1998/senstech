@@ -72,14 +72,11 @@ const Devices = () => {
                 </div>
                {user?.role==='admin'&& user?.level <= 2 ?  <div className="col-6 mt-5">
                  
-                 <NavLink to='/add-device' > <button
-                 type="button"
-                 style={{display:"block"}}
-                 className="btn ms-auto blue-background white submit-btn py-2 px-4"
-                
-               >
-                 Add Device
-               </button></NavLink> 
+                 <NavLink to='/add-device' > 
+                 <button type="button" style={{display:"block"}}
+                 className="btn ms-auto blue-background white submit-btn py-2 px-4">Add Device
+               </button>
+               </NavLink> 
                  
                    </div> : "" } 
                

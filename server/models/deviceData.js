@@ -9,7 +9,7 @@ const DataSchema = new Schema(
     },
     data: [{
       channel: String,
-      value: Number
+      value: Number,
   }],
   },
 

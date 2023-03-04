@@ -150,7 +150,7 @@ const Sidebar = props => {
             </nav>
           </div>
 
-          <div className="height-100 bg-light mt-5">{props.element}</div>
+          <div className=" bg-light mt-5">{props.element}</div>
         </div>
       </div>
       {/* <SmallFooter /> */}
