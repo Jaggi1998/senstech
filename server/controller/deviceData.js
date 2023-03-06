@@ -9,7 +9,19 @@ exports.deviceData = async (req, res) => {
        
         if (!errors.isEmpty()) return res.status(400).send({status:0,msg:errors.array()[0].msg})
 
-        let {deviceId, data} = req.body
+        let {deviceId} = req.body
+        let data =[]
+        
+        const entries = Object.entries(req.body);
+        entries.forEach(element => {
+          if (element[0] !== "deviceId") {
+            let obj = {
+              channel:element[0],
+              value: element[1]
+            }
+           data.push(obj)
+          }
+        });
 
       let channels = await Channel.find({deviceId:deviceId})
 
@@ -24,9 +36,6 @@ exports.deviceData = async (req, res) => {
       }
 
         await DeviceData.create({deviceId, data})
-
-
-
         return res.status(201).send({msg:"Data added"})
 
     } catch (err) {
