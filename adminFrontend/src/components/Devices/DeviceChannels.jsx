@@ -28,7 +28,7 @@ export const options = {
 };
 
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+const labels = ['10', '20', '30', '40', '50', '60', '70', '80', '90', '100'];
 
 
 
@@ -38,6 +38,8 @@ const Devices = () => {
 
     let [channels, setChannels] = useState([])
     let [file, setFile] = useState([])
+    let TableData = []
+
     useEffect(() => {
       const url = `${API_URL}/get-channels/${location.state.deviceId}`;
   
@@ -51,9 +53,6 @@ const Devices = () => {
         }
       };
       fetchData();
-        setInterval(() => {
-          fetchData();
-        }, 5000);
     }, []);
 
     useEffect(() => {
@@ -68,11 +67,11 @@ const Devices = () => {
           console.log("error", error);
         }
       };
-      fetchData();
-        setInterval(() => {
+   
           fetchData();
-        }, 5000);
+          // Header(file)
     }, []);
+
 const fileName = 'Device Logs'
 const exportType =  exportFromJSON.types.csv
 
@@ -103,6 +102,26 @@ const download = () => {
       ],
     };
 
+    const Header = ({ array }) => {
+      let counter = 0;
+      const headers = Object.keys(array[0] ?? {});
+      return headers.map((x) => {
+        ++counter;
+        return (
+          <th style={{}} key={counter}>
+            {x}
+          </th>
+        );
+      });
+    };
+    const Body = (file) => {
+      for (let i=0; i<file.length; i++) {
+        const bodys = Object.values(file[i] ?? {});
+        TableData.push(bodys)
+      } 
+    };
+    Body(file)
+
   return (
     <>
       <Sidebar
@@ -121,22 +140,13 @@ const download = () => {
                  type="button"
                  style={{display:"block"}}
                  onClick={download}
-                 className="btn ms-auto blue-background white submit-btn py-2 px-4"
-                
-               >
-                 Download
-               </button>
+                 className="btn ms-auto blue-background white submit-btn py-2 px-4">
+                Download</button>
                </div> 
-                  
-               
-              
-                </div>
-                </div>
-              
               </div>
-              <div className="row">
-            
-                
+            </div>    
+          </div>
+            <div className="row">
               {channels &&
                   channels.length > 0 &&
                   channels.map((channel, index) => {
@@ -150,16 +160,13 @@ const download = () => {
                             </div>
                             <div className="col-md-8">
                               <div className="card-body">
-                                <h3 className="card-text">Name: {channel.channelName}</h3>
-                                <h5 className="card-text">Value: {channel.channelData}</h5>
+                                <h4 className="card-text">{channel.channelName}: {channel.channelData}</h4>
                                 <p className="card-text"><small className="text-muted">Last Updated: {format(channel.updatedAt)}</small></p>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                      
-                          
                       </>
                     );
                   })}
@@ -171,6 +178,35 @@ const download = () => {
                   <div className="py-4"style={{ borderRadius:"10px", boxShadow: "rgb(0 0 0 / 40%) 0px 0px 8px 0px", backgroundColor:"white"}}>
                     <div className="col-md-10 col-12 mx-auto">
                       <Line options={options} data={data} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-12 mb-5" >
+                  <div className="py-4"style={{ borderRadius:"10px", boxShadow: "rgb(0 0 0 / 40%) 0px 0px 8px 0px", backgroundColor:"white"}}>
+                    <div className=" table-responsive col-md-10 col-12 mx-auto">
+                      <h3 className="mb-5 text-center">Device Logs</h3>
+                    <table class="table table-striped mb-0 text-center">
+                      <thead>
+                        <tr>
+                          <Header array={file} />
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {
+              TableData.map((numList,i) =>(
+                   <tr key={i}>
+                    {
+                      numList.map((num,j)=>
+                         <td key={j}>{num}</td>
+                      )
+                    }
+                   </tr>
+                ))
+           }
+                      </tbody>
+                    </table>
                     </div>
                   </div>
                 </div>
