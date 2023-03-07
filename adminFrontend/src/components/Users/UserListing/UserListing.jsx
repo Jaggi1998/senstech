@@ -2,9 +2,10 @@ import React, { useEffect , useState} from "react";
 import { useSelector } from "react-redux";
 import Sidebar from "../../Sidebar/Sidebar";
 import {API_URL} from '../../../constants/urls';
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Users = () => {
+    const navigate = useNavigate()
     let [users,setUsers] = useState([])
     const [showAlert, setShowAlert] = useState(false);
 
@@ -28,7 +29,9 @@ const Users = () => {
       fetchData();
     }, []);
 
-
+    const userDetails = (e) => {
+      navigate('/devices-list', { state: {userId:e}})
+    }
 
   return (
     <>
@@ -60,7 +63,7 @@ const Users = () => {
               
               </div>
               <div className="row">
-              <table class="table no-wrap user-table mb-0 text-center">
+              <table class="table no-wrap table-hover mb-0 text-center">
                   <thead>
                     <tr>
                       <th scope="col" class="border-0 text-uppercase font-medium blue-text pl-4">S.No</th>
@@ -79,15 +82,15 @@ const Users = () => {
                     return (
                       <>
                        
-                          <tr key={index}>
-                          <td class="pl-4 grey-text">{index+1}</td>
-                          <td>
+                         <tr key={index} style={{cursor:"pointer"}}>
+                          <td class="pl-4 grey-text" onClick={()=>{userDetails(user._id)}} >{index+1}</td>
+                          <td onClick={()=>{userDetails(user._id)}}>
                               <span class="font-medium mb-0 grey-text">{user.name}</span>
                           </td>
-                          <td>
+                          <td onClick={()=>{userDetails(user._id)}}>
                               <span class="font-medium grey-text">{user.email}</span>
                           </td>
-                          <td>
+                          <td onClick={()=>{userDetails(user._id)}}>
                               <span class="font-medium grey-text">{user.phone_no}</span>
                           </td>
                           <td>

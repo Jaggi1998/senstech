@@ -60,7 +60,7 @@ exports.getDeviceData = async (req, res) => {
       for (j=0; j< File.length; j++) {   
         
           num = num+1
-        let currObj = {eventId:num, deviceId:req.params.deviceId, time: moment(time[j]).format("DD-MM-YYYY")}
+        let currObj = {eventId:num, deviceId:req.params.deviceId, time: moment(time[j]).format("DD-MM-YYYY, h:mm:ss a")}
 
        File[j].forEach(channel => {
          let obj = { [channel.channel] : channel.value}

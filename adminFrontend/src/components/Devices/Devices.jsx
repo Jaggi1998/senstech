@@ -2,7 +2,7 @@ import React, { useEffect , useState} from "react";
 import { useSelector } from "react-redux";
 import Sidebar from "../Sidebar/Sidebar";
 import {API_URL} from '../../constants/urls';
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 const Devices = () => {
     let [devices,setDevices] = useState([])
@@ -10,15 +10,22 @@ const Devices = () => {
     let [orderId,setOrderId] = useState("")
     let [orderStatus,setOrderStatus] = useState("")
     const [showAlert, setShowAlert] = useState(false);
+    let Location = useLocation()
+
+
+    console.log("Location",Location.state)
 
     const { user } = useSelector(state => ({ ...state.auth }));
-  const userId = user?.id;
+  const userIds = user?.id;
 
     const handleShow = (e) => {
       setOrderId(e)
       setShow(true);
     };
     useEffect(() => {
+
+      let userId = Location.state ? Location.state.userId : userIds
+
       const url = `${API_URL}/get-devices/${userId}`;
   
       const fetchData = async () => {
@@ -34,7 +41,7 @@ const Devices = () => {
       };
   
       fetchData();
-    }, [showAlert]);
+    }, [showAlert, Location.state]);
 
 
     const updateStatus = async () =>{
@@ -70,7 +77,7 @@ const Devices = () => {
                 <div className="col-6 mt-5">
                     <h3 className="blue-text">Devices</h3>
                 </div>
-               {user?.role==='admin'&& user?.level <= 2 ?  <div className="col-6 mt-5">
+               {user?.role==='admin'&& user?.level <= 2 && Location.state ?  <div className="col-6 mt-5">
                  
                  <NavLink to='/add-device' > 
                  <button type="button" style={{display:"block"}}
