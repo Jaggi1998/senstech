@@ -16,19 +16,25 @@ exports.deviceData = async (req, res) => {
         entries.forEach(element => {
           if (element[0] !== "deviceId") {
             let obj = {
-              channel:element[0],
-              value: element[1]
+              [element[0]] : element[1]
             }
            data.push(obj)
           }
         });
 
+        console.log("data",data)
+
       let channels = await Channel.find({deviceId:deviceId})
 
       for (i=0; i<channels.length; i++) {
         if(data[i]) {
-            if (data[i].channel == channels[i].channelName) {
-                await channels[i].updateOne({channelData:data[i].value})
+          var arr = Object.keys(data[i])
+          var arr2 = Object.values(data[i])
+          var [keyName] = arr;  
+          var [keyValue] = arr2;  
+
+            if (keyName == channels[i].channelName) {
+                await channels[i].updateOne({channelData:keyValue})
             } else {
                 await channels[i].updateOne({channelData:0})
             }
@@ -58,12 +64,15 @@ exports.getDeviceData = async (req, res) => {
       }
       let num = 0
       for (j=0; j< File.length; j++) {   
+
+
+        console.log("File",File[j])
         
           num = num+1
         let currObj = {eventId:num, deviceId:req.params.deviceId, time: moment(time[j]).format("DD-MM-YYYY, h:mm:ss a")}
 
        File[j].forEach(channel => {
-         let obj = { [channel.channel] : channel.value}
+         let obj = {...channel}
           Object.assign(currObj, obj)
         });
         

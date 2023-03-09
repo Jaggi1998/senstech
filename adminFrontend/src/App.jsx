@@ -7,6 +7,7 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import Login from "./components/Login&Signup/Login/Login";
 import Devices from "./components/Devices/Devices";
 import Channels from "./components/Devices/DeviceChannels";
+import DeviceSettings from "./components/Devices/DeviceSetting";
 import Logout from "./components/Login&Signup/Logout/Logout";
 import Withdraw from "./components/WithrawUsers/WithrawUsers";
 import Signup from "./components/Login&Signup/Signup/Signup";
@@ -51,6 +52,10 @@ const App = () => {
         <Route
           path="/device-channels"
           element={<Protected Component={Channels} />}
+        ></Route>
+        <Route
+          path="/device-settings"
+          element={<Protected Component={DeviceSettings} />}
         ></Route>
          <Route
           path="/training-videos"

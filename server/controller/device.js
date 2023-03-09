@@ -14,7 +14,7 @@ exports.addDevice = async (req, res) => {
         await Device.create({deviceId, userId, dealerId, adminId, parameter})
         
         for (i=1; i<= parameter; i++) {
-            await Channel.create({deviceId, channelName:"d"+i })
+            await Channel.create({deviceId, channelName:"d"+i, channelDisplayName:"d"+i})
         }
 
         return res.status(200).send({msg:"Device added"})
@@ -38,6 +38,33 @@ exports.getDevice = async (req, res) => {
     } catch (err) {
         return res.status(400).send({msg:err.message})
   }
+}
+
+exports.updateDeviceChannel = async (req, res) =>{
+    try {
+        let {channelId} = req.params
+        let { channelDisplayName, min, max, prefix, postfix } = req.body;
+
+        let findChannel = await Channel.findById(channelId)
+
+      await Channel.findOneAndUpdate({_id: channelId}, {$set:
+        {
+        channelDisplayName:channelDisplayName?channelDisplayName:findChannel.channelDisplayName,
+        min:min ? min :findChannel.min ,
+        max:max? max :findChannel.max ,
+        prefix: prefix ? prefix :findChannel.prefix,
+        postfix: postfix ? postfix :findChannel.postfix
+    }
+    })
+
+      console.log(req.body)
+
+         return res.status(200).send({msg:"channel Updated"})
+    } catch (err) {
+        return res.status(400).send({msg:err.message})
+    }
+
+    // 63fb38bdfcec5fabfdf9066f 63fb38bdfcec5fabfdf9066f
 }
 
 exports.getChannels = async (req, res) => {

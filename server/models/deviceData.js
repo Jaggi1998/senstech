@@ -8,8 +8,7 @@ const DataSchema = new Schema(
       required: true,
     },
     data: [{
-      channel: String,
-      value: Number,
+      type: Object
   }],
   },
 

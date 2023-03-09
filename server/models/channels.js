@@ -11,6 +11,21 @@ const ChannelSchema = new Schema(
       type: String,
       required: true
     },
+    channelDisplayName: {
+      type: String,
+    },
+    min: {
+      type:Number
+    },
+    max:{
+      type:Number
+    },
+    prefix:{
+      type: String
+    },
+    postfix: {
+      type: String
+    },
     channelData:{
         type: Number,
       default: 0

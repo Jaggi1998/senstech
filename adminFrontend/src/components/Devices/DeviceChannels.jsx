@@ -2,7 +2,7 @@ import React, { useEffect , useState} from "react";
 import { format } from 'timeago.js'
 import Sidebar from "../Sidebar/Sidebar";
 import {API_URL} from '../../constants/urls';
-import { useLocation } from 'react-router-dom';
+import { useLocation, NavLink } from 'react-router-dom';
 import hardware from "../../Static/Img/Devices&channels/hardware.png";
 import exportFromJSON from 'export-from-json'
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend} from 'chart.js';
@@ -75,21 +75,51 @@ const Devices = () => {
 const fileName = 'Device Logs'
 const exportType =  exportFromJSON.types.csv
 
-const download = () => {
-  try {
-    exportFromJSON({ data: file, fileName, exportType })
-  } catch (err) {
-    console.log(err)
-  }
-}
-
+// const download = () => {
+//   try {
+//     exportFromJSON({ data: file, fileName, exportType })
+//   } catch (err) {
+//     console.log(err)
+//   }
+// }
+ // Quick and simple export target #table_id into a csv
+   const download = (table_id, separator = ',') => {
+    
+        try {
+          var rows = document.querySelectorAll('table#' + table_id + ' tr');
+          var csv = [];
+          for (var i = 0; i < rows.length; i++) {
+              var row = [], cols = rows[i].querySelectorAll('td, th');
+              for (var j = 0; j < cols.length; j++) {
+                  var data = cols[j].innerText.replace(/(\r\n|\n|\r)/gm, '').replace(/(\s\s)/gm, ' ')
+                  data = data.replace(/"/g, '""');
+              
+                  row.push('"' + data + '"');
+              }
+              csv.push(row.join(separator));
+          }
+          var csv_string = csv.join('\n');
+          var filename = 'Data_Log_' + new Date().toLocaleDateString() + '.csv';
+          var link = document.createElement('a');
+          link.style.display = 'none';
+          link.setAttribute('target', '_blank');
+          link.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv_string));
+          link.setAttribute('download', filename);
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        }
+       catch (err) {
+        console.log(err)
+       }
+      }
 
    const data = {
       labels,
       datasets: [
         {
           label: 'Dataset 1',
-          data: [5, 26, 14, 42, 58,39,29],
+          data: [5, 26, 14, 42, 58,undefined,29],
           borderColor: 'rgb(255, 99, 132)',
           backgroundColor: 'rgba(255, 99, 132, 0.5)',
         },
@@ -102,18 +132,6 @@ const download = () => {
       ],
     };
 
-    const Header = ({ array }) => {
-      let counter = 0;
-      const headers = Object.keys(array[0] ?? {});
-      return headers.map((x) => {
-        ++counter;
-        return (
-          <th style={{}} key={counter}>
-            {x}
-          </th>
-        );
-      });
-    };
     const Body = (file) => {
       for (let i=0; i<file.length; i++) {
         const bodys = Object.values(file[i] ?? {});
@@ -136,12 +154,21 @@ const download = () => {
                     <h3 className="blue-text">Device Channels</h3>
                 </div>
                 <div className="col-6 mt-5">
+
+                  <div className="ms-auto" style={{width:"fit-content"}}>
                <button
                  type="button"
-                 style={{display:"block"}}
-                 onClick={download}
-                 className="btn ms-auto blue-background white submit-btn py-2 px-4">
+                 style={{display:"inline-block"}}
+                 onClick={(e) => {download('tbl')}}
+                 className="btn blue-background white submit-btn py-2 px-4">
                 Download</button>
+            <NavLink to="/device-settings/" state={{deviceId: location.state.deviceId}} className="ms-2" > <button
+                 type="button"
+                 style={{display:"inline-block"}}
+                 className="btn blue-background white submit-btn py-2 px-4">
+                Settings</button> </NavLink>
+                  </div>
+
                </div> 
               </div>
             </div>    
@@ -160,7 +187,7 @@ const download = () => {
                             </div>
                             <div className="col-md-8">
                               <div className="card-body">
-                                <h4 className="card-text">{channel.channelName}: {channel.channelData}</h4>
+                                <h5 className="card-text">{channel.channelDisplayName ? channel.channelDisplayName: channel.channelName }: {channel.channelData}</h5>
                                 <p className="card-text"><small className="text-muted">Last Updated: {format(channel.updatedAt)}</small></p>
                               </div>
                             </div>
@@ -187,10 +214,22 @@ const download = () => {
                   <div className="py-4"style={{ borderRadius:"10px", boxShadow: "rgb(0 0 0 / 40%) 0px 0px 8px 0px", backgroundColor:"white"}}>
                     <div className=" table-responsive col-md-10 col-12 mx-auto">
                       <h3 className="mb-5 text-center">Device Logs</h3>
-                    <table class="table table-striped mb-0 text-center">
+                    <table class="table table-striped mb-0 text-center" id="tbl">
                       <thead>
                         <tr>
-                          <Header array={file} />
+                          <th>Event Id</th>
+                          <th>Device Id</th>
+                          <th>Date</th>
+                          {channels &&
+                        channels.length > 0 &&
+                        channels.map(channel => {
+                          return (
+                            <>
+                                <th>{channel.channelDisplayName ? channel.channelDisplayName: channel.channelName }</th>
+                          </>
+                        );
+                      })}
+
                         </tr>
                       </thead>
                       <tbody>
@@ -198,8 +237,12 @@ const download = () => {
               TableData.map((numList,i) =>(
                    <tr key={i}>
                     {
-                      numList.map((num,j)=>
-                         <td key={j}>{num}</td>
+                      numList.map((num,j)=> {
+                        return(<>
+                        <td key={j}>{num}</td>
+                        
+                        </>)
+                      }
                       )
                     }
                    </tr>
