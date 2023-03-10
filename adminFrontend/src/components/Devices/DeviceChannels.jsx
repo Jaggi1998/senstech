@@ -4,7 +4,7 @@ import Sidebar from "../Sidebar/Sidebar";
 import {API_URL} from '../../constants/urls';
 import { useLocation, NavLink } from 'react-router-dom';
 import hardware from "../../Static/Img/Devices&channels/hardware.png";
-import exportFromJSON from 'export-from-json'
+import { download } from "./DeviceFunctions";
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend} from 'chart.js';
 import { Line } from 'react-chartjs-2';
 
@@ -69,68 +69,7 @@ const Devices = () => {
       };
    
           fetchData();
-          // Header(file)
     }, []);
-
-const fileName = 'Device Logs'
-const exportType =  exportFromJSON.types.csv
-
-// const download = () => {
-//   try {
-//     exportFromJSON({ data: file, fileName, exportType })
-//   } catch (err) {
-//     console.log(err)
-//   }
-// }
- // Quick and simple export target #table_id into a csv
-   const download = (table_id, separator = ',') => {
-    
-        try {
-          var rows = document.querySelectorAll('table#' + table_id + ' tr');
-          var csv = [];
-          for (var i = 0; i < rows.length; i++) {
-              var row = [], cols = rows[i].querySelectorAll('td, th');
-              for (var j = 0; j < cols.length; j++) {
-                  var data = cols[j].innerText.replace(/(\r\n|\n|\r)/gm, '').replace(/(\s\s)/gm, ' ')
-                  data = data.replace(/"/g, '""');
-              
-                  row.push('"' + data + '"');
-              }
-              csv.push(row.join(separator));
-          }
-          var csv_string = csv.join('\n');
-          var filename = 'Data_Log_' + new Date().toLocaleDateString() + '.csv';
-          var link = document.createElement('a');
-          link.style.display = 'none';
-          link.setAttribute('target', '_blank');
-          link.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv_string));
-          link.setAttribute('download', filename);
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-        }
-       catch (err) {
-        console.log(err)
-       }
-      }
-
-   const data = {
-      labels,
-      datasets: [
-        {
-          label: 'Dataset 1',
-          data: [5, 26, 14, 42, 58,undefined,29],
-          borderColor: 'rgb(255, 99, 132)',
-          backgroundColor: 'rgba(255, 99, 132, 0.5)',
-        },
-        {
-          label: 'Dataset 2',
-          data: [0, 10, 50, 20, 40,36,18],
-          borderColor: 'rgb(53, 162, 235)',
-          backgroundColor: 'rgba(53, 162, 235, 0.5)',
-        },
-      ],
-    };
 
     const Body = (file) => {
       for (let i=0; i<file.length; i++) {
@@ -139,6 +78,43 @@ const exportType =  exportFromJSON.types.csv
       } 
     };
     Body(file)
+
+  let arr = [];
+  let colors = ["rgb(255, 20, 147)", "rgb(255, 165, 0)", "rgb(106, 90, 205)","rgb(50, 205, 50)","rgb(165, 42, 42)","rgb(255,0,255)"]
+  const chartData = (channels) =>{
+    try {
+        
+        for (let i=0; i <channels.length; i++ ) {
+            var firstCells = document.querySelectorAll(`td:nth-child(${i+4})`);
+
+            var cellValues = [];
+
+            firstCells.forEach(element => { cellValues.push(element.innerText) });
+
+           
+
+          let obj =  {
+            label: channels[i].channelDisplayName ? channels[i].channelDisplayName: channels[i].channelName,
+            data: cellValues,
+            borderColor: colors[i],
+            backgroundColor: colors[i],
+          }
+          if (arr.length <= channels.length) {
+              arr.push(obj)
+          }
+        }
+      
+    } catch (err) {
+        console.log(err)
+    }
+  }
+  chartData(channels)
+
+  const data = {
+    labels,
+    datasets:arr,
+  };
+
 
   return (
     <>
