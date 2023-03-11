@@ -6,7 +6,7 @@ app.use('/api',router);
 const DEVICEDATA = require('../controller/deviceData');
 const DEVICE = require ('../controller/device');
 
-router.post('/device-data',[
+router.get('/device-data',[
     check('deviceId', 'Please enter a valid deviceId').trim().notEmpty().isString(),
     
 ], DEVICEDATA.deviceData);

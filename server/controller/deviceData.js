@@ -9,10 +9,13 @@ exports.deviceData = async (req, res) => {
        
         if (!errors.isEmpty()) return res.status(400).send({status:0,msg:errors.array()[0].msg})
 
-        let {deviceId} = req.body
+
+        
+
+        let {deviceId} = req.query
         let data =[]
         
-        const entries = Object.entries(req.body);
+        const entries = Object.entries(req.query);
         entries.forEach(element => {
           if (element[0] !== "deviceId") {
             let obj = {
