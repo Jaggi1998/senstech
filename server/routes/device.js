@@ -8,9 +8,7 @@ const DEVICE = require ('../controller/device');
 
 router.get('/device-data',[
     check('deviceId', 'Please enter a valid deviceId').trim().notEmpty().isString(),
-    
 ], DEVICEDATA.deviceData);
-
 
 router.get('/get-device-data/:deviceId', DEVICEDATA.getDeviceData);
 
@@ -22,7 +20,10 @@ router.post('/add-device',[
 
 router.get('/get-devices/:userId', DEVICE.getDevice);
 
+router.get('/delete-device/:deviceId', DEVICE.deleteDevice);
+
 router.get('/get-channels/:deviceId', DEVICE.getChannels);
+
 router.post('/update-channel/:channelId', DEVICE.updateDeviceChannel);
 
 

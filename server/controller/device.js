@@ -40,6 +40,19 @@ exports.getDevice = async (req, res) => {
   }
 }
 
+exports.deleteDevice = async (req, res) => {
+  try {
+  
+    let { deviceId } = req.params
+
+    await Device.findByIdAndDelete({_id:deviceId});
+
+    return res.status(200).send({msg:"device Deleted"});
+    } catch (err) {
+        return res.status(400).send({msg:err.message})
+  }
+}
+
 exports.updateDeviceChannel = async (req, res) =>{
     try {
         let {channelId} = req.params

@@ -7,4 +7,6 @@ const USERS = require ('../controller/users');
 
 router.get('/get-users/:adminId', USERS.getUsers);
 
+router.get('/delete-user/:userId', USERS.deleteUser);
+
 module.exports = router;

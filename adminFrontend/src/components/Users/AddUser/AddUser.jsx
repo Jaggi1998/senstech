@@ -3,9 +3,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../../Sidebar/Sidebar";
 import { API_URL } from "../../../constants/urls";
-import SweetAlert from 'react-bootstrap-sweetalert';
-// import { editProfile } from "../../../slices/user"
-// import "./ProfileCommon.css";
+import Swal from 'sweetalert2';
 
 const AddUser = () => {
   let navigate = useNavigate();
@@ -15,7 +13,6 @@ const AddUser = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
-  const [showAlert, setShowAlert] = useState(false);
   const [message, setMessage] = useState("");
   const [errMsg, setErrMsg] = useState(false)
   const { user } = useSelector(state => ({ ...state.auth }));
@@ -36,16 +33,28 @@ const AddUser = () => {
       setErrMsg(true);
     }
     if (result.status=== 200) {
-      setShowAlert(true)
+      addUser()
     }
     result = await result.json();
     setMessage(result.msg);
     
   }
-  function cancel () {
-    setShowAlert(false)
-    navigate("/users-list")
+
+  const addUser = () => {
+    Swal.fire({
+      title: 'User Added Successfully!',
+      icon: 'success',
+      showCancelButton: false,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'OK'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate("/users-list")
+      }
+    })
   }
+
   return (
     <>
     <Sidebar element={
@@ -98,13 +107,12 @@ const AddUser = () => {
               </button>
             </div>
             </form>
-                    </div>
+          </div>
                
-                </div>
-                </div>
+         </div>
+       </div>
                 
    }/>
-       <SweetAlert success title="User Added Successfully!" show={showAlert} onConfirm={cancel} onCancel={cancel} ></SweetAlert>
     </>
   );
 };

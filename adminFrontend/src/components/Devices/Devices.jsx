@@ -3,25 +3,17 @@ import { useSelector } from "react-redux";
 import Sidebar from "../Sidebar/Sidebar";
 import {API_URL} from '../../constants/urls';
 import { NavLink, useLocation } from "react-router-dom";
+import Swal from 'sweetalert2';
 
 const Devices = () => {
     let [devices,setDevices] = useState([])
-    let [show,setShow] = useState(false)
-    let [orderId,setOrderId] = useState("")
-    let [orderStatus,setOrderStatus] = useState("")
-    const [showAlert, setShowAlert] = useState(false);
+    let [refreshDevice, setRefreshDevice] = useState(false)
     let Location = useLocation()
-
-
-    console.log("Location",Location.state)
 
     const { user } = useSelector(state => ({ ...state.auth }));
   const userIds = user?.id;
 
-    const handleShow = (e) => {
-      setOrderId(e)
-      setShow(true);
-    };
+    
     useEffect(() => {
 
       let userId = Location.state ? Location.state.userId : userIds
@@ -41,27 +33,38 @@ const Devices = () => {
       };
   
       fetchData();
-    }, [showAlert, Location.state]);
+    }, [refreshDevice,Location.state]);
 
 
-    const updateStatus = async () =>{
-      let orderInfo = { orderId, orderStatus };
-      console.log("orderInfo", orderInfo)
-      let result = await fetch(`${API_URL}/update-orders`, {
-        method: "POST",
-        body: JSON.stringify(orderInfo),
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json"
+
+    const deleteDevice = (deviceId) => {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then( async (result) => {
+        if (result.isConfirmed) {
+         try {
+           const response = await fetch(`${API_URL}/delete-device/${deviceId}`);
+           if (response.status === 200) {
+             Swal.fire(
+               'Deleted!',
+               'Device has been deleted.',
+               'success'
+             )
+             setRefreshDevice(true)
+           }
+         } catch (error) {
+           console.log("error", error);
+         }
+       
+         
         }
-      });
-     
-      if (result.status=== 200) {
-        setShow(false)
-        setShowAlert(true)
-      }
-      result = await result.json();
-      
+      })
     }
 
   return (
@@ -79,7 +82,7 @@ const Devices = () => {
                 </div>
                {user?.role==='admin'&& user?.level <= 2 && Location.state ?  <div className="col-6 mt-5">
                  
-                 <NavLink to='/add-device' > 
+                 <NavLink to='/add-device' state={{userId:Location.state.userId}}> 
                  <button type="button" style={{display:"block"}}
                  className="btn ms-auto blue-background white submit-btn py-2 px-4">Add Device
                </button>
@@ -120,7 +123,10 @@ const Devices = () => {
                               <span class="font-medium grey-text">{device.parameter}</span>
                           </td>
                           <td>
-                          <NavLink to="/device-channels/" state={{deviceId: device.deviceId}}>
+
+                          <button type="button" class="btn blue-background text-white" onClick={() => {deleteDevice(device._id)}} ><i class="fa-solid fa-trash"></i></button>
+            
+                          <NavLink to="/device-channels/" state={{deviceId: device.deviceId}} className="ms-2" >
                             <button type="button" class="btn blue-background text-white" >View</button>
             </NavLink>
                           </td>

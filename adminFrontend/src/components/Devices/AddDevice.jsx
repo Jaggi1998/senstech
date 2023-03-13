@@ -1,47 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Sidebar from "../Sidebar/Sidebar";
 import { API_URL } from "../../constants/urls";
-import SweetAlert from 'react-bootstrap-sweetalert';
-// import { editProfile } from "../../../slices/user"
-// import "./ProfileCommon.css";
+import Swal from 'sweetalert2';
 
 const AddDevice = () => {
   let navigate = useNavigate();
+  const location = useLocation();
   const [deviceId, setDeviceId] = useState("");
-  const [userId, setUserId] = useState("");
-  const [users, setUsers] = useState([])
   const [parameter, setParameter] = useState("");
-//   const [dealerId, setDealerId] = useState("");
-  const [showAlert, setShowAlert] = useState(false);
   const [message, setMessage] = useState("");
   const [errMsg, setErrMsg] = useState(false)
   const { user } = useSelector(state => ({ ...state.auth }));
   const adminId = user?.id;
 
-  useEffect(() => {
-    const url = `${API_URL}/get-users/${adminId}`;
-
-    const fetchData = async () => {
-      try {
-        const response = await fetch(url);
-        const json = await response.json();
-
-        await setUsers(json);
-     
-      } catch (error) {
-        console.log("error", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-
   const postDevice = async () =>{
 
-    let deviceInfo = { deviceId, userId, adminId, parameter };
+    let deviceInfo = { deviceId, userId:location.state.userId, adminId, parameter };
     let result = await fetch(`${API_URL}/add-device`, {
       method: "POST",
       body: JSON.stringify(deviceInfo),
@@ -54,16 +30,30 @@ const AddDevice = () => {
       setErrMsg(true);
     }
     if (result.status === 200) {
-      setShowAlert(true)
+      addDevice()
     }
     result = await result.json();
     setMessage(result.msg);
     
   }
-  function cancel () {
-    setShowAlert(false)
-    navigate("/devices-list")
+
+  const addDevice = () => {
+    Swal.fire({
+      title: 'Device Added Successfully!',
+      icon: 'success',
+      showCancelButton: false,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'OK'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate("/devices-list")
+      }
+    })
   }
+
+
+
   return (
     <>
     <Sidebar element={
@@ -83,17 +73,9 @@ const AddDevice = () => {
         { errMsg === true ? <div class="alert alert-danger text-center" role="alert"> {message} </div> : ""}
             <div className=" mb-4">
                 <label for="floatingName">Device ID</label>
-                <input type="text" className="form-control" onChange={(e)=> setDeviceId(e.target.value)} id="floatingName" placeholder="Name"/>
+                <input type="text" className="form-control" onChange={(e)=> setDeviceId(e.target.value)} id="floatingName" placeholder="Device Id"/>
             </div>
-            <div className=" mb-4">
-                <label for="floatingName">Users</label>
-                <select onChange={(e)=> setUserId(e.target.value)} class="form-select" aria-label="Default select example">
-                    <option selected disabled>Select a user</option>
-                {users?.map(user => 
-        <option  value={user._id} >{user.email}</option>
-    )}
-                    </select>
-            </div>
+            
             <div className=" mb-4">
                 <label for="floatingPhone">Channels</label>
                 <input type="number" className="form-control" onChange={(e)=> setParameter(e.target.value)} id="floatingPhone" placeholder="4"/>
@@ -114,9 +96,8 @@ const AddDevice = () => {
                 </div>
                 </div>
                 
-   }/>
-       <SweetAlert success title="Device Added Successfully!" show={showAlert} onConfirm={cancel} onCancel={cancel} ></SweetAlert>
-    </>
+    }/>
+  </>
   );
 };
 

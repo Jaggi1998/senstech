@@ -17,6 +17,10 @@ const UserSchema = new Schema(
         type: Number,
         default: 4
     },
+    isDeleted: {
+      type: Boolean,
+      default: false
+    },
     adminId:{
        type: mongoose.Schema.Types.ObjectId,
     },

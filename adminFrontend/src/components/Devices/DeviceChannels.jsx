@@ -7,6 +7,7 @@ import hardware from "../../Static/Img/Devices&channels/hardware.png";
 import { download } from "./DeviceFunctions";
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend} from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 ChartJS.register(
   CategoryScale,
@@ -81,11 +82,14 @@ const Devices = () => {
 
   let arr = [];
   let colors = ["rgb(255, 20, 147)", "rgb(255, 165, 0)", "rgb(106, 90, 205)","rgb(50, 205, 50)","rgb(165, 42, 42)","rgb(255,0,255)"]
-  const chartData = (channels) =>{
+  const chartData = async(channels) =>{
     try {
         
         for (let i=0; i <channels.length; i++ ) {
-            var firstCells = document.querySelectorAll(`td:nth-child(${i+4})`);
+            var firstCells = await document.querySelectorAll(`td:nth-child(${i+4})`);
+
+
+            console.log("firstCells",firstCells)
 
             var cellValues = [];
 
@@ -132,18 +136,29 @@ const Devices = () => {
                 <div className="col-6 mt-5">
 
                   <div className="ms-auto" style={{width:"fit-content"}}>
-               <button
-                 type="button"
-                 style={{display:"inline-block"}}
-                 onClick={(e) => {download('tbl')}}
-                 className="btn blue-background white submit-btn py-2 px-4">
-                Download</button>
+
+                <Dropdown style={{display:"inline-block"}} >
+                <Dropdown.Toggle className="blue-background py-2 px-4 " style={{ border:"none"}} id="dropdown-basic">
+                 Export
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item onClick={(e) => {download('tbl')}} >Export CSV</Dropdown.Item>
+                  <Dropdown.Item href="#/action-2">Export PDF</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             <NavLink to="/device-settings/" state={{deviceId: location.state.deviceId}} className="ms-2" > <button
                  type="button"
                  style={{display:"inline-block"}}
                  className="btn blue-background white submit-btn py-2 px-4">
                 Settings</button> </NavLink>
                   </div>
+
+               
+
+              
+
+
 
                </div> 
               </div>

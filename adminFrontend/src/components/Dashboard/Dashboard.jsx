@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Sidebar from "../Sidebar/Sidebar";
-import videoImage from "../../Static/Img/Dashboard/videoImage.png";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import { useNavigate } from "react-router-dom";
-import SweetAlert from "react-bootstrap-sweetalert";
-import { API_URL } from "../../constants/urls";
+// import videoImage from "../../Static/Img/Dashboard/videoImage.png";
+// import Button from "react-bootstrap/Button";
+// import Modal from "react-bootstrap/Modal";
+// import { useNavigate } from "react-router-dom";
+// import SweetAlert from "react-bootstrap-sweetalert";
+// import { API_URL } from "../../constants/urls";
 import "./Dashboard.css";
 import {PieChart} from './PieChart';
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 // import videoPlay from '../../Static/Img/Dashboard/videoPlay.png';
 // import SmallFooter from '../Footer/smallFooter';
 const Dashboard = () => {

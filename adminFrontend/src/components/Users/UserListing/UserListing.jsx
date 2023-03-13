@@ -3,12 +3,13 @@ import { useSelector } from "react-redux";
 import Sidebar from "../../Sidebar/Sidebar";
 import {API_URL} from '../../../constants/urls';
 import { NavLink, useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2';
+
 
 const Users = () => {
     const navigate = useNavigate()
     let [users,setUsers] = useState([])
-    const [showAlert, setShowAlert] = useState(false);
-
+    let [refreshUser, setRefreshUser] = useState(false)
     const { user } = useSelector(state => ({ ...state.auth }));
   const adminId = user?.id;
     useEffect(() => {
@@ -27,11 +28,41 @@ const Users = () => {
       };
   
       fetchData();
-    }, []);
+    }, [refreshUser]);
 
     const userDetails = (e) => {
       navigate('/devices-list', { state: {userId:e}})
     }
+
+   const deleteUser = (userId) => {
+     Swal.fire({
+       title: 'Are you sure?',
+       text: "You won't be able to revert this!",
+       icon: 'warning',
+       showCancelButton: true,
+       confirmButtonColor: '#3085d6',
+       cancelButtonColor: '#d33',
+       confirmButtonText: 'Yes, delete it!'
+     }).then( async (result) => {
+       if (result.isConfirmed) {
+        try {
+          const response = await fetch(`${API_URL}/delete-user/${userId}`);
+          if (response.status === 200) {
+            Swal.fire(
+              'Deleted!',
+              'User has been deleted.',
+              'success'
+            )
+            setRefreshUser(true)
+          }
+        } catch (error) {
+          console.log("error", error);
+        }
+      
+        
+       }
+     })
+   }
 
   return (
     <>
@@ -95,7 +126,7 @@ const Users = () => {
                           </td>
                           <td>
                         
-                            <button type="button" class="btn blue-background text-white" ><i class="fa-solid fa-trash"></i></button>
+                            <button type="button" class="btn blue-background text-white" onClick={()=>{deleteUser(user._id)}} ><i class="fa-solid fa-trash"></i></button>
             
                           </td>
                         </tr>
@@ -108,6 +139,7 @@ const Users = () => {
               </div>
             </div>
           </>
+          
         }
       />
     </>
